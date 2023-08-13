@@ -1,9 +1,9 @@
 const pg = require('pg');
 
 const pool = new pg.Pool({
-    host: 'localhost',
+    host: 'Localhost',
     port: 5432,
-    database: 'weekend-to-do-app', 
+    database: 'weekend-to-do-app',
 });
 
 module.exports = pool;
