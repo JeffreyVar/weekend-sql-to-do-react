@@ -38,17 +38,32 @@ function App () {
       <h1>TO DO APP</h1>
     
       <h3>Add Task</h3>
-      <form onSubmit={addTask}>
-        <label id="task">Task</label>
-        <input onChange={ (event) => setToDoListTask(event.target.value)}  />
-        <button>Add Task</button>
+      <form id="form" onSubmit={addTask}>
+        <label id="task">Task:</label>
+        <input type="text" id="input" onChange={ (event) => setToDoListTask(event.target.value)}  />
+        <br></br>
+        <button id="add-task">Add Task</button>
       </form>
       <br></br>
       <br></br>
-      <h3>My Tasks</h3>
-        <ul>
-        {toDoListArray.map(task => (<li key={task.task} >{task.task}</li>))}
-        </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>My Tasks</th>
+            <th>Complete</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {toDoListArray.map(task => (
+          <tr key={task.task}>
+            <td>{task.task}</td>
+            <td><button onClick={() => completeTask()}>Complete</button></td>
+            <td><button onClick={() => deleteTask()}>Delete</button></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

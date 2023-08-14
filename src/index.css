@@ -6,9 +6,26 @@ body {
 
 h1 {
   text-align: center;
+  color: aliceblue;
+  background-color:#22313f;
+  padding: 30px;
+  margin-top: 0;
 }
 
 h3 {
   margin-inline-start: 10px;
   font-style: italic;
+}
+
+#form {
+  margin-inline-start: 10px;
+}
+
+#input {
+  margin-inline-start: 10px;
+  width: 300px;
+}
+
+#add-task {
+  margin-top: 10px;
 }
