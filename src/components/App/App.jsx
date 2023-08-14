@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function App () {
 
+  let [toDoListId, setToDoListId] = useState('');
   let [toDoListTask, setToDoListTask] = useState('');
   let [toDoListArray, setToDoListArray] = useState([]);
 
@@ -28,6 +29,15 @@ function App () {
       console.log(error);
     });
   };
+
+  const deleteTask = (taskId) =>
+    axios.delete(`/list/${taskId}`)
+    .then((response) => {
+      fetchList();
+    }).catch((error) => {
+      console.log('Error', error);
+      alert('Something went wrong');
+    });
 
   useEffect(() => {
     fetchList();
@@ -58,8 +68,8 @@ function App () {
           {toDoListArray.map(task => (
           <tr key={task.task}>
             <td>{task.task}</td>
-            <td><button onClick={() => completeTask()}>Complete</button></td>
-            <td><button onClick={() => deleteTask()}>Delete</button></td>
+            <td><button onClick={() => completeTask(task.id)}>Complete</button></td>
+            <td><button onClick={() => deleteTask(task.id)}>Delete</button></td>
             </tr>
           ))}
         </tbody>
