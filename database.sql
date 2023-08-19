@@ -1,6 +1,7 @@
 CREATE TABLE list (
 	id SERIAL PRIMARY KEY,
-	task varchar(255)
+	task varchar(255),
+	complete BOOLEAN DEFAULT FALSE
 );
 
 INSERT INTO "list" ("task")

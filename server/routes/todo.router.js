@@ -6,7 +6,7 @@ const pool = require('../modules/pool.js');
 
 router.get('/', (req, res) => {
     console.log("In GET request");
-    let queryText = 'SELECT * from "list"';
+    let queryText = 'SELECT * FROM list ORDER BY id, id ASC;';
 
     pool.query(queryText).then((result) => {
         res.send(result.rows);
@@ -32,8 +32,24 @@ router.post('/', (req, res) => {
 
 // PUT
 
+router.put('/complete/:id', (req,res) => {
+    let {id} = req.params;
+    let {complete} = req.body;
+    const sqlText = `UPDATE "list" SET "complete" = NOT "complete"
+    WHERE "id" = $1;`;
+    pool.query(sqlText, [id])
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log(`Error making query ${queryText}`, err);
+            res.sendStatus(500);
+        });
+});
+
 // DELETE
 
+    //let newTreat = req.body;
 router.delete('/:id', (req,res) => {
     let id = req.params.id;
     let queryText = `DELETE FROM "list" WHERE "id" = $1;`;

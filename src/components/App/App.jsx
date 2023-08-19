@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
+
 
 function App () {
 
-  let [toDoListId, setToDoListId] = useState('');
   let [toDoListTask, setToDoListTask] = useState('');
+  let [toDoListComplete, setToDoListComplete] = useState(false);
   let [toDoListArray, setToDoListArray] = useState([]);
 
   const fetchList = () => {
@@ -25,6 +27,7 @@ function App () {
     .then((response) => {
       console.log(response);
       fetchList();
+      setToDoListTask('');
     }).catch((error) => {
       console.log(error);
     });
@@ -39,6 +42,17 @@ function App () {
       alert('Something went wrong');
     });
 
+
+  const completeTask = (id) => {
+    axios.put(`/list/complete/${id}`, {complete: true})
+    .then((response) => {
+      fetchList();
+    }).catch((error) => {
+      console.log('Error', error);
+      alert('Something went wrong');
+    });
+  }
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -50,26 +64,30 @@ function App () {
       <h3>Add Task</h3>
       <form id="form" onSubmit={addTask}>
         <label id="task">Task:</label>
-        <input type="text" id="input" onChange={ (event) => setToDoListTask(event.target.value)}  />
+        <input value={toDoListTask} type="text" id="input" onChange={ (event) => setToDoListTask(event.target.value)}  />
         <br></br>
         <button id="add-task">Add Task</button>
       </form>
+      <button id="reset">Reset</button>
       <br></br>
       <br></br>
       <table>
         <thead>
           <tr>
             <th>My Tasks</th>
-            <th>Complete</th>
-            <th>Delete</th>
+            <th id="complete-heading">Complete</th>
+            <th id="delete-heading">Delete</th>
           </tr>
         </thead>
         <tbody>
           {toDoListArray.map(task => (
           <tr key={task.task}>
-            <td>{task.task}</td>
-            <td><button onClick={() => completeTask(task.id)}>Complete</button></td>
-            <td><button onClick={() => deleteTask(task.id)}>Delete</button></td>
+            <td id={task.complete ? "complete-task" : "not-complete-task"}>{task.task}</td>
+            <td><button id={task.complete ? "complete" : "not-complete"} onClick={() => 
+              completeTask(task.id)}
+>             {task.complete ? "Completed" : "Complete"}
+            </button></td>
+            <td><button id="delete" onClick={() => deleteTask(task.id)}>Delete</button></td>
             </tr>
           ))}
         </tbody>
