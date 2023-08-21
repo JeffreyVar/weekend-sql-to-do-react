@@ -6,7 +6,6 @@ import swal from 'sweetalert';
 function App () {
 
   let [toDoListTask, setToDoListTask] = useState('');
-  let [toDoListComplete, setToDoListComplete] = useState(false);
   let [toDoListArray, setToDoListArray] = useState([]);
 
   const fetchList = () => {
@@ -34,13 +33,26 @@ function App () {
   };
 
   const deleteTask = (taskId) =>
+  swal({
+    title: "Are you sure you want to delete this task?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
     axios.delete(`/list/${taskId}`)
     .then((response) => {
       fetchList();
+      swal("Task deleted!", {
+        icon: "success",
+      });
     }).catch((error) => {
       console.log('Error', error);
       alert('Something went wrong');
     });
+  } 
+});
 
 
   const completeTask = (id) => {
@@ -68,7 +80,6 @@ function App () {
         <br></br>
         <button id="add-task">Add Task</button>
       </form>
-      <button id="reset">Reset</button>
       <br></br>
       <br></br>
       <table>

@@ -14,16 +14,16 @@ h1 {
 }
 
 h3 {
-  margin-inline-start: 10px;
+  margin-inline-start: 20px;
   font-style: italic;
 }
 
-#form, #reset {
-  margin-inline-start: 10px;
+#form {
+  margin-inline-start: 20px;
 }
 
 #input {
-  margin-inline-start: 10px;
+  margin-inline-start: 15px;
   width: 300px;
 }
 
