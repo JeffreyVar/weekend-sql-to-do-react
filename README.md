@@ -6,7 +6,7 @@
 
 _Duration: 2 Week Sprint_
 
-This project is a to-do list application that allows a user to submit tasks to create a custom list. After adding each task, the user has the option to complete or delete each task. Because the user-created list is stored on a database, the user can close the application and return to the saved data after opening the application at a later time. The user is given visual feedback after choosing to complete the task. Upon deleting, the user is asked to confirm their choice as to prevent accidental deletion.
+This project is a to-do list application that allows a user to submit tasks to create a custom list. After adding each task, the user has the option to complete or delete each task. Because the user-created list is stored on a database, the user can close the application and return to their list when revisiting the application at a later time. The user is given visual feedback after choosing to complete the task. Upon deleting, the user is asked to confirm their choice, as to prevent accidental deletion.
 
 ![To Do List App](./ToDoApp.png)
 ![Delete Alert](./DeleteAlert.png)

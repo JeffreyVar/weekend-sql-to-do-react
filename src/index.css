@@ -18,7 +18,7 @@ h3 {
   font-style: italic;
 }
 
-#form {
+#form, #reset {
   margin-inline-start: 20px;
 }
 
@@ -37,11 +37,6 @@ h3 {
   transition-duration: 0.15s;
 }
 
-
-#reset {
-  display: inline-block;
-}
-
 #complete, #not-complete, #delete {
   margin: auto;
   display: block;
@@ -50,10 +45,13 @@ h3 {
 #complete {
   background: lightgray;
   font-style: italic;
-  
 }
 
-#add-task:hover, #reset:hover {
+#add-task:hover {
+  background-color: #454545;
+}
+
+#reset:hover {
   background-color: #454545;
 }
 

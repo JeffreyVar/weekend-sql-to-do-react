@@ -7,7 +7,6 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => {
     console.log("In GET request");
     let queryText = 'SELECT * FROM list ORDER BY id, id ASC;';
-
     pool.query(queryText).then((result) => {
         res.send(result.rows);
     }).catch((err) => {
@@ -34,7 +33,7 @@ router.post('/', (req, res) => {
 
 router.put('/complete/:id', (req,res) => {
     let {id} = req.params;
-    let {complete} = req.body;
+    // Switches between true and false
     const sqlText = `UPDATE "list" SET "complete" = NOT "complete"
     WHERE "id" = $1;`;
     pool.query(sqlText, [id])
@@ -47,18 +46,32 @@ router.put('/complete/:id', (req,res) => {
         });
 });
 
+// Handles reset on the server side
+router.put('/reset', (req,res) => {
+    let {complete} = req.body;
+    console.log(req.body);
+    const sqlText = `UPDATE "list" SET "complete" = $1`;
+    pool.query(sqlText, [complete])
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log(`Error making query ${sqlText}`, err);
+            res.sendStatus(500);
+        });
+});
+
 // DELETE
 
-    //let newTreat = req.body;
 router.delete('/:id', (req,res) => {
-    let id = req.params.id;
-    let queryText = `DELETE FROM "list" WHERE "id" = $1;`;
-    pool.query(queryText, [id])
+    let {id} = req.params;
+    let sqlText = `DELETE FROM "list" WHERE "id" = $1;`;
+    pool.query(sqlText, [id])
     .then((result) => {
         res.sendStatus(200);
     })
     .catch((err) => {
-        console.log(`Error making query ${queryText}`, err);
+        console.log(`Error making query ${sqlText}`, err);
         res.sendStatus(500);
     });
 });
