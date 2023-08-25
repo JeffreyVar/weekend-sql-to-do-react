@@ -24,7 +24,12 @@ h3 {
 
 #input {
   margin-inline-start: 15px;
-  width: 300px;
+  width: 400px;
+  /* background-color: aliceblue; */
+}
+
+.MuiTextField-root {
+  background: white;
 }
 
 #add-task, #reset, #complete, #not-complete, #delete {
@@ -47,11 +52,7 @@ h3 {
   font-style: italic;
 }
 
-#add-task:hover {
-  background-color: #454545;
-}
-
-#reset:hover {
+#add-task:hover, #reset:hover {
   background-color: #454545;
 }
 

@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
-
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 function App () {
 
@@ -84,24 +86,26 @@ function App () {
   return (
     <div>
       <h1>TO DO APP</h1>
-    
-      <h3>Add Task</h3>
+  
       <form id="form" onSubmit={addTask}>
-        <label id="task">Task:</label>
-        <input value={toDoListTask} type="text" id="input" onChange={(event) => setToDoListTask(event.target.value)}/>
+
+        <TextField size="small" id="input" label="Enter Task" variant="filled" value={toDoListTask} type="text" onChange={(event) => setToDoListTask(event.target.value)}/>
+        {/* <label id="task">Task:</label>
+        <input value={toDoListTask} type="text" id="input" onChange={(event) => setToDoListTask(event.target.value)}/> */}
         <br></br>
-        <button id="add-task">Add Task</button>
+        {/* <button id="add-task">Add Task</button> */}
+        <Button type="submit" id="add-task" variant="contained">Add Task</Button> 
+        {/* Resets form to show all items as "not complete" */}
+        <Button id="reset" onClick={() => resetList()}>Reset</Button>
       </form>
-      {/* Resets form to show all items as "not complete" */}
-      <button id="reset" onClick={() => resetList()}>Reset</button>
       <br></br>
       <br></br>
       <table>
         <thead>
           <tr>
-            <th>My Tasks</th>
-            <th id="complete-heading">Complete</th>
-            <th id="delete-heading">Delete</th>
+            <th>MY TASKS</th>
+            <th id="complete-heading">COMPLETE</th>
+            <th id="delete-heading">DELETE</th>
           </tr>
         </thead>
         <tbody>
@@ -110,11 +114,11 @@ function App () {
             {/* Conditional formating allows task text to appear differently, based on if task complete is true or false*/}
             <td id={task.complete ? "complete-task" : "not-complete-task"}>{task.task}</td>
             {/* Buttons will also appear differently, based on if task complete is true or false*/}
-            <td><button id={task.complete ? "complete" : "not-complete"} onClick={() => 
+            <td><Button id={task.complete ? "complete" : "not-complete"} onClick={() => 
               completeTask(task.id)}
 >             {task.complete ? "Completed" : "Complete"}
-            </button></td>
-            <td><button id="delete" onClick={() => deleteTask(task.id)}>Delete</button></td>
+            </Button></td>
+            <td><Button id="delete" onClick={() => deleteTask(task.id)}>Delete</Button></td>
             </tr>
           ))}
         </tbody>
