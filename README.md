@@ -1,6 +1,4 @@
-# Full Stack Weekend To-Do Application
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Full Stack To-Do Application
 
 ## Description
 
@@ -29,7 +27,6 @@ Required software:
 6. The `npm run client` command will open up a new browser tab for you
 
 ## Usage
-How does someone use this application? Tell a user story here.
 
 1. After opening the app, the user would input their task in the input field, repeating as necessary to create their list.
 2. Each task is displayed on the page to the user and is stored in the database so that the user can close the app and return to the saved list.
@@ -40,7 +37,7 @@ How does someone use this application? Tell a user story here.
 
 ## Built With
 
-This app is built with HTML, CSS, Javascript, React, SweetAlert, Axios, Postgres, and SQL.
+This app is built with HTML, CSS, Javascript, React, SweetAlert, PostgreSQL, and MaterialUI.
 
 ## Acknowledgement
 Special thanks to [Prime Digital Academy](www.primeacademy.io) for providing me with the challenge and the resources that made this app a reality!
